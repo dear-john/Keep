@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--系统自带颜色-->
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#ffce3d3a</color>
+    <color name="colorPrimaryDark">#ffce3d3a</color>
+    <color name="colorAccent">#ffce3d3a</color>
+
+    <color name="colorTheme">#ffce3d3a</color>
+    <color name="colorToolbarSelected">#FFFFFF</color>
+    <color name="colorPageBg">#f2f4f5</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
