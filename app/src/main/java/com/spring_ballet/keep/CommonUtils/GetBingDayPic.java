@@ -28,7 +28,6 @@ public class GetBingDayPic {
                 }
             }
         }).start();
-        Log.d("data", "getBingDayPicUrl: "+data);
         if (!TextUtils.isEmpty(data)) {
             return data;
         }

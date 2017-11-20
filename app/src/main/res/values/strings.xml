@@ -2,4 +2,8 @@
     <string name="app_name">Keep</string>
     <string name="hot_movie_list">热映榜</string>
     <string name="top_movie">豆瓣电影Top250</string>
+    <string name="director">导演:</string>
+    <string name="major">主演:</string>
+    <string name="movie_type">类型:</string>
+    <string name="movie_score">评分:</string>
 </resources>

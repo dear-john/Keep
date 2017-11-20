@@ -17,6 +17,11 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         titleList = titles;
     }
 
+    public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+        super(fm);
+        fragmentList = fragments;
+    }
+
     @Override
     public Fragment getItem(int position) {
         return fragmentList.get(position);

@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.spring_ballet.keep.CommonUtils.GetBingDayPic;
 import com.spring_ballet.keep.CommonUtils.IntentUtil;
 import com.spring_ballet.keep.databinding.ActivitySplashBinding;
 
@@ -21,16 +20,16 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final ActivitySplashBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         binding.ivDeflault.setImageResource(R.drawable.splash_default);
+        Glide.with(SplashActivity.this)
+                .setDefaultRequestOptions(new RequestOptions()
+                        .error(R.drawable.splash_default)
+                        .placeholder(R.drawable.splash_default))
+                .load("http://api.dujin.org/bing/1366.php")
+                .into(binding.ivSplash);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 binding.ivDeflault.setVisibility(View.GONE);
-                Glide.with(SplashActivity.this)
-                        .setDefaultRequestOptions(new RequestOptions()
-                                .error(R.drawable.splash_default)
-                                .placeholder(R.drawable.splash_default))
-                        .load(GetBingDayPic.getBingDayPicUrl())
-                        .into(binding.ivSplash);
             }
         }, 1500);
         new Handler().postDelayed(new Runnable() {
@@ -40,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
                 IntentUtil.startIntent(SplashActivity.this, MainActivity.class);
                 finish();
             }
-        }, 2000);
+        }, 3500);
         binding.tvJump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,4 +1,4 @@
-package com.spring_ballet.keep;
+package com.spring_ballet.keep.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,8 +13,11 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutResourceId(), container, false);
+        initData();
         return view;
     }
+
+    protected abstract void initData();
 
     protected abstract int getLayoutResourceId();
 }

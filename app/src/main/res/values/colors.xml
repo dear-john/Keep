@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--系统自带颜色-->
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <!--<color name="colorPrimaryDark">#303F9F</color>-->
-    <!--<color name="colorAccent">#FF4081</color>-->
+    <!--<cotitlename="colorPrimary">#3F51B5</color>-->
+    <!--<cotitlename="colorPrimaryDark">#303F9F</color>-->
+    <!--<cotitlename="colorAccent">#FF4081</color>-->
 
     <color name="colorPrimary">#ffce3d3a</color>
     <color name="colorPrimaryDark">#ffce3d3a</color>
