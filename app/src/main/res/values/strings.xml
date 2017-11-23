@@ -2,8 +2,10 @@
     <string name="app_name">Keep</string>
     <string name="hot_movie_list">热映榜</string>
     <string name="top_movie">豆瓣电影Top250</string>
-    <string name="director">导演:</string>
-    <string name="major">主演:</string>
-    <string name="movie_type">类型:</string>
-    <string name="movie_score">评分:</string>
+    <string name="see_more">浏览更多</string>
+    <string name="movie_coming">即将上映</string>
+    <string name="movie_usbox">北美票房榜</string>
+    <string name="movie_rating_left">(</string>
+    <string name="movie_rating_right">人评分)</string>
+    <string name="search_hint">书籍、电影</string>
 </resources>

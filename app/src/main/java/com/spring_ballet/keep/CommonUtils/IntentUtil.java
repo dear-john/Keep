@@ -9,4 +9,10 @@ public class IntentUtil {
         Intent intent = new Intent(context, c);
         context.startActivity(intent);
     }
+
+    public static void startIntent(Context context, Class<?> c, String data) {
+        Intent intent = new Intent(context, c);
+        intent.putExtra("data", data);
+        context.startActivity(intent);
+    }
 }

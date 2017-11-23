@@ -13,4 +13,6 @@
     <color name="colorToolbarSelected">#FFFFFF</color>
     <color name="colorPageBg">#f2f4f5</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorContent">#ff333333</color>
+    <color name="colorSearch">#E28B89</color>
 </resources>

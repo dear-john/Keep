@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.spring_ballet.keep.Adapter.MyFragmentPagerAdapter;
+import com.spring_ballet.keep.CommonUtils.IntentUtil;
+import com.spring_ballet.keep.CommonUtils.ToastUtil;
 import com.spring_ballet.keep.databinding.ActivityMainBinding;
 import com.spring_ballet.keep.fragment.BookFragment;
 import com.spring_ballet.keep.fragment.GankFragment;
@@ -32,6 +35,16 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         binding.viewPagerMainActivity.setOffscreenPageLimit(2);
         binding.viewPagerMainActivity.addOnPageChangeListener(this);
         binding.viewPagerMainActivity.setCurrentItem(0);
+        binding.ivGank.setSelected(true);
+        initListener();
+    }
+
+    private void initListener() {
+        binding.ivGank.setOnClickListener(this);
+        binding.ivMovie.setOnClickListener(this);
+        binding.ivDouban.setOnClickListener(this);
+        binding.layoutMenu.setOnClickListener(this);
+        binding.layoutSearch.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_menu:
+                ToastUtil.showToast(MainActivity.this,"menu");
                 break;
             case R.id.iv_gank:
                 setSelectedPage(0);
@@ -64,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 setSelectedPage(2);
                 break;
             case R.id.layout_search:
+                IntentUtil.startIntent(MainActivity.this,SearchActivity.class);
                 break;
             default:
         }
@@ -75,16 +90,19 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 binding.ivGank.setSelected(true);
                 binding.ivMovie.setSelected(false);
                 binding.ivDouban.setSelected(false);
+                binding.viewPagerMainActivity.setCurrentItem(0);
                 break;
             case 1:
                 binding.ivGank.setSelected(false);
                 binding.ivMovie.setSelected(true);
                 binding.ivDouban.setSelected(false);
+                binding.viewPagerMainActivity.setCurrentItem(1);
                 break;
             case 2:
                 binding.ivGank.setSelected(false);
                 binding.ivMovie.setSelected(false);
                 binding.ivDouban.setSelected(true);
+                binding.viewPagerMainActivity.setCurrentItem(2);
                 break;
             default:
         }

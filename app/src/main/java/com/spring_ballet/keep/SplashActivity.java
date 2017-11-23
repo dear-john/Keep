@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.spring_ballet.keep.CommonUtils.ApiList;
 import com.spring_ballet.keep.CommonUtils.IntentUtil;
 import com.spring_ballet.keep.databinding.ActivitySplashBinding;
 
@@ -24,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(new RequestOptions()
                         .error(R.drawable.splash_default)
                         .placeholder(R.drawable.splash_default))
-                .load("http://api.dujin.org/bing/1366.php")
+                .load(ApiList.BingDayPic)
                 .into(binding.ivSplash);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -35,9 +36,9 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                isInMain = true;
                 IntentUtil.startIntent(SplashActivity.this, MainActivity.class);
                 finish();
+                isInMain = true;
             }
         }, 3500);
         binding.tvJump.setOnClickListener(new View.OnClickListener() {
@@ -45,9 +46,9 @@ public class SplashActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isInMain)
                     return;
-                isInMain = true;
                 IntentUtil.startIntent(SplashActivity.this, MainActivity.class);
                 finish();
+                isInMain = true;
             }
         });
     }

@@ -13,4 +13,12 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="RecyclerViewScrollbarTheme">
+        <item name="android:scrollbarThumbHorizontal">@drawable/recyclerview_scrollbar</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarStyle">outsideInset</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
 </resources>
