@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="subjects"
+            type="com.spring_ballet.keep.bean.MovieBean.Subjects" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/layout_movie_detail_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/iv_movie_item_poster"
+                android:layout_width="115dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="10dp"
+                android:scaleType="fitXY" />
+
+            <!--电影详情-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="12dp"
+                android:orientation="vertical">
+
+                <!--电影名-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{subjects.title}"
+                    android:textColor="@color/colorContent"
+                    android:textSize="17sp" />
+
+
+                <!--导演-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="导演: "
+                        android:textColor="@color/colorContent" />
+
+                    <TextView
+                        android:id="@+id/tv_movie_item_dir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textColor="@color/colorContent" />
+
+                </LinearLayout>
+
+                <!--主演-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="主演: "
+                        android:textColor="@color/colorContent" />
+
+                    <TextView
+                        android:id="@+id/tv_movie_item_casts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textColor="@color/colorContent" />
+
+                </LinearLayout>
+
+                <!--类型-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="类型: "
+                        android:textColor="@color/colorContent" />
+
+                    <TextView
+                        android:id="@+id/tv_movie_item_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textColor="@color/colorContent" />
+
+                </LinearLayout>
+
+                <!--上映日期-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="上映日期: "
+                        android:textColor="@color/colorContent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(subjects.year)}"
+                        android:textColor="@color/colorContent" />
+
+                </LinearLayout>
+
+                <!--评分-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="评分: "
+                        android:textColor="@color/colorContent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{String.valueOf(subjects.rating.average)}"
+                        android:textColor="@color/colorContent" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_movie_item"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/layout"
+            android:layout_marginBottom="3dp"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/colorTheme" />
+
+    </RelativeLayout>
+</layout>

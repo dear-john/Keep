@@ -12,59 +12,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <!--toolbar-->
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_movie_detail"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorTheme"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
+            android:layout_height="250dp"
+            android:fitsSystemWindows="true">
 
-            <ImageView
-                android:id="@+id/iv_movie_detail_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/icon_back" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:gravity="center_vertical"
-                android:text="@{movie.title}"
-                android:textColor="@color/colorWhite"
-                android:textSize="17sp" />
-
-            <ImageView
-                android:id="@+id/iv_movie_detail_more"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/toolbar_more" />
-        </android.support.v7.widget.Toolbar>
-
-        <!--电影主题信息-->
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <!--背景-->
+                <ImageView
+                    android:id="@+id/movie_detail_head_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax" />
+
+                <!--toolbar-->
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_movie_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp">
+
+                    <ImageView
+                        android:id="@+id/iv_movie_detail_back"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/icon_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center_vertical"
+                        android:text="@{movie.title}"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_movie_detail_more"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/toolbar_more" />
+                </android.support.v7.widget.Toolbar>
 
                 <!--头部-->
                 <LinearLayout
                     android:id="@+id/layout_detail_head"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
                     android:background="@color/colorTheme"
                     android:orientation="horizontal">
 
@@ -166,7 +179,6 @@
                                 android:textColor="@color/colorWhite" />
 
                             <TextView
-
                                 android:id="@+id/tv_movie_detail_pubdate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -222,6 +234,20 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!--电影主体信息-->
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <!--另称-->
                 <LinearLayout

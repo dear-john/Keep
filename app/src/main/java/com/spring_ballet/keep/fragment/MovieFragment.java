@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.spring_ballet.keep.Adapter.MyRecyclerViewAdapter;
 import com.spring_ballet.keep.CommonUtils.ApiList;
 import com.spring_ballet.keep.CommonUtils.IntentUtil;
+import com.spring_ballet.keep.CommonUtils.LoadDataUtil;
 import com.spring_ballet.keep.CommonUtils.MovieListType;
 import com.spring_ballet.keep.CommonUtils.MyAsyncTask;
 import com.spring_ballet.keep.CommonUtils.ToastUtil;
@@ -57,54 +58,11 @@ public class MovieFragment extends Fragment implements View.OnClickListener {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && isFirtVisible) {
             isFirtVisible = false;
-            loadData(ApiList.HotMovieList, MovieListType.HOTMOVIE);
-            loadData(ApiList.MovieComingSoon, MovieListType.COMINGSOON);
+            LoadDataUtil.loadData(ApiList.HotMovieList, MovieListType.HOTMOVIE, binding.recyclerViewMovieHot, getActivity());
+            LoadDataUtil.loadData(ApiList.MovieComingSoon, MovieListType.COMINGSOON, binding.recyclerViewMovieComing, getActivity());
+            LoadDataUtil.loadData(ApiList.UsBoxList, MovieListType.USBOX, binding.recyclerViewMovieUsbox, getActivity());
 //            loadData(ApiList.KouBeiList, MovieListType.KOUBEI);
-            loadData(ApiList.UsBoxList, MovieListType.USBOX);
 //            loadData(ApiList.NewMovieList, MovieListType.NEWMOVIE);
         }
-    }
-
-    private void loadData(final String url, final int type) {
-        MyAsyncTask myAsyncTask = new MyAsyncTask(type);
-        myAsyncTask.execute(url);
-        myAsyncTask.setOnAsyncResponse(new MyAsyncTask.AsyncResponse() {
-            @Override
-            public void onSubjectsDataReceivedSuccess(List<Subjects> subjects) {
-                if (subjects != null) {
-                    LinearLayoutManager manager = new LinearLayoutManager(getActivity(),
-                            LinearLayoutManager.HORIZONTAL, false);
-                    switch (type) {
-                        case MovieListType.HOTMOVIE:
-                            binding.recyclerViewMovieHot.setLayoutManager(manager);
-                            binding.recyclerViewMovieHot.setAdapter(new MyRecyclerViewAdapter(getActivity(), subjects));
-                            break;
-                        case MovieListType.COMINGSOON:
-                            binding.recyclerViewMovieComing.setLayoutManager(manager);
-                            binding.recyclerViewMovieComing.setAdapter(new MyRecyclerViewAdapter(getActivity(), subjects));
-                            break;
-                        case MovieListType.KOUBEI:
-                            break;
-                        case MovieListType.USBOX:
-                            binding.recyclerViewMovieUsbox.setLayoutManager(manager);
-                            binding.recyclerViewMovieUsbox.setAdapter(new MyRecyclerViewAdapter(getActivity(), subjects));
-                            break;
-                        case MovieListType.NEWMOVIE:
-                            break;
-                        default:
-                    }
-                }
-            }
-
-            @Override
-            public void onMovieDataReceivedSuccess(Movie movie) {
-
-            }
-
-            @Override
-            public void onDataReceivedFailed() {
-                ToastUtil.showToast(getActivity(), "加载出错了");
-            }
-        });
     }
 }

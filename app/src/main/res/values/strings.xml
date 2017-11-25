@@ -8,4 +8,5 @@
     <string name="movie_rating_left">(</string>
     <string name="movie_rating_right">人评分)</string>
     <string name="search_hint">书籍、电影</string>
+    <string name="search_count">&lt;前20条&gt;</string>
 </resources>

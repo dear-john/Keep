@@ -9,4 +9,5 @@ public class MovieListType {
     public static final int NEWMOVIE = 4;
     public static final int TOPMOVIE = 5;
     public static final int MOVIEDETAIL = 6;
+    public static final int SEARCHMOVIE = 7;
 }

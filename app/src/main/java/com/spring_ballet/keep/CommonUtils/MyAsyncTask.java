@@ -37,6 +37,7 @@ public class MyAsyncTask extends AsyncTask<String, Void, String> {
                 case MovieListType.HOTMOVIE:
                 case MovieListType.COMINGSOON:
                 case MovieListType.TOPMOVIE:
+                case MovieListType.SEARCHMOVIE:
                     subjectsList = gson.fromJson(s, InTheaters.class).subjects;
                     asyncResponse.onSubjectsDataReceivedSuccess(subjectsList);
                     break;
