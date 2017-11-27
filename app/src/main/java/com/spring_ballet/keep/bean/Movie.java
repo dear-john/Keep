@@ -18,6 +18,8 @@ public class Movie {
     public int collect_count;
     public Images images;
     public List<Directors> directors;
+    public String mobile_url;
+    public String alt;
     public List<String> countries;
     public List<Casts> casts;
     public String year;

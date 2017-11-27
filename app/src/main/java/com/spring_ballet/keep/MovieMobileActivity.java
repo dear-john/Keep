@@ -1,0 +1,116 @@
+package com.spring_ballet.keep;
+
+import android.animation.ObjectAnimator;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.BounceInterpolator;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import com.spring_ballet.keep.CommonUtils.ToastUtil;
+import com.spring_ballet.keep.databinding.ActivityMovieMobileBinding;
+
+public class MovieMobileActivity extends AppCompatActivity {
+
+    private ActivityMovieMobileBinding binding;
+    private String url;
+    private String name;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_mobile);
+        setSupportActionBar(binding.toolbarMovieMobile);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+        binding.ivMovieMobileBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        url = getIntent().getStringExtra("data1");
+        name = getIntent().getStringExtra("data2");
+        binding.tvMovieMobileName.setText(String.format("%s - 电影 - 豆瓣 ", name));
+        ObjectAnimator animator = ObjectAnimator.ofFloat(binding.tvMovieMobileName, "translationX", 500f, 0f);
+        animator.setDuration(3000);
+        animator.start();
+        binding.pbMovieMobile.setMax(100);
+        binding.webViewMovieMobile.loadUrl(url);
+        binding.webViewMovieMobile.setWebViewClient(new WebViewClient());
+        binding.webViewMovieMobile.getSettings().setJavaScriptEnabled(true);
+        binding.webViewMovieMobile.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress < 100) {
+                    binding.pbMovieMobile.setVisibility(View.VISIBLE);
+                    binding.pbMovieMobile.setProgress(newProgress);
+                } else if (newProgress >= 100) {
+                    binding.pbMovieMobile.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.movie_mobile_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_share:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                String shareData = name + " - 电影 - 豆瓣 " + url + "（分享自" + getString(R.string.app_name) + "）";
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareData);
+                shareIntent.setType("text/plain");
+                if (shareIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(shareIntent, "分享到"));
+                }
+                break;
+            case R.id.item_copy:
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("label", url);
+                if (clipboardManager != null) {
+                    clipboardManager.setPrimaryClip(clipData);
+                    ToastUtil.showToast(MovieMobileActivity.this, "复制成功");
+                }
+                break;
+            case R.id.item_open:
+                Intent openIntent = new Intent(Intent.ACTION_VIEW);
+                openIntent.setData(Uri.parse(url));
+                if (openIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(openIntent, "使用以下方式打开"));
+                }
+                break;
+            default:
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && binding.webViewMovieMobile.canGoBack()) {
+            binding.webViewMovieMobile.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+}

@@ -36,20 +36,22 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                IntentUtil.startIntent(SplashActivity.this, MainActivity.class);
-                finish();
-                isInMain = true;
+                toMainActivity();
             }
         }, 3500);
         binding.tvJump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isInMain)
-                    return;
-                IntentUtil.startIntent(SplashActivity.this, MainActivity.class);
-                finish();
-                isInMain = true;
+                toMainActivity();
             }
         });
+    }
+
+    private void toMainActivity() {
+        if (isInMain)
+            return;
+        IntentUtil.startIntent(SplashActivity.this, MainActivity.class);
+        finish();
+        isInMain = true;
     }
 }

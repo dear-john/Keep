@@ -17,6 +17,7 @@ import com.spring_ballet.keep.SearchActivity;
 import com.spring_ballet.keep.bean.MovieBean.Subjects;
 import com.spring_ballet.keep.databinding.FragmentSearchMovieBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +25,7 @@ public class SearchMovieFragment extends Fragment {
 
     private FragmentSearchMovieBinding binding;
     private SearchActivity activity;
+    private boolean isFirst = true;
 
     @Override
     public void onAttach(Context context) {
@@ -42,7 +44,11 @@ public class SearchMovieFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            List<Subjects> subjectsList = activity.getData();
+            List<Subjects> subjectsList = new ArrayList<>();
+            if (isFirst) {
+                subjectsList = activity.getData();
+                isFirst = false;
+            }
             if (subjectsList != null) {
                 binding.recyclerViewSearchMovie.setLayoutManager(new LinearLayoutManager(activity));
                 binding.recyclerViewSearchMovie.setAdapter(new MyRecyclerViewAdapter(activity, subjectsList, CommonField.MOVIE_SEARCH_ITEM));

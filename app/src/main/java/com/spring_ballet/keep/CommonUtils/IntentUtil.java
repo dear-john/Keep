@@ -21,6 +21,13 @@ public class IntentUtil {
         context.startActivity(intent);
     }
 
+    public static void startIntent(Context context, Class<?> c, String data1,String data2) {
+        Intent intent = new Intent(context, c);
+        intent.putExtra("data1", data1);
+        intent.putExtra("data2", data2);
+        context.startActivity(intent);
+    }
+
     public static void startIntent(Context context, Class<?> c, Subjects subjects) {
         Intent intent = new Intent(context, c);
         intent.putExtra("id", subjects.id);

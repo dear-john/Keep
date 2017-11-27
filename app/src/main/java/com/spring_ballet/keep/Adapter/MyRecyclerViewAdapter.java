@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.spring_ballet.keep.CommonUtils.CommonField;
 import com.spring_ballet.keep.CommonUtils.IntentUtil;
 import com.spring_ballet.keep.CommonUtils.MovieUtils.CastsFormatUtil;
@@ -58,7 +60,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             case CommonField.MOVIE_GENERAL_ITEM:
                 this.generalItemBinding.setSubjects(subjectsList.get(position));
                 final Subjects subjects = this.generalItemBinding.getSubjects();
-                Glide.with(context).load(subjects.images.medium).into(generalItemBinding.ivMovieImage);
+                Glide.with(context)
+                        .setDefaultRequestOptions(new RequestOptions()
+                                .placeholder(R.drawable.load_err)
+                                .error(R.drawable.load_err))
+                        .load(subjects.images.medium)
+                        .into(generalItemBinding.ivMovieImage);
                 String s = GenresFormatUtil.format(subjects.genres) + "(" + subjects.rating.average + "')";
                 generalItemBinding.tvMovieOtherInfo.setText(s);
                 generalItemBinding.layoutMovieItem.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +79,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             case CommonField.MOVIE_SEARCH_ITEM:
                 this.detailItemBinding.setSubjects(subjectsList.get(position));
                 final Subjects subjects2 = this.detailItemBinding.getSubjects();
-                Glide.with(context).load(subjects2.images.medium).into(detailItemBinding.ivMovieItemPoster);
+                Glide.with(context)
+                        .setDefaultRequestOptions(new RequestOptions()
+                                .placeholder(R.drawable.load_err)
+                                .error(R.drawable.load_err)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
+                        .load(subjects2.images.medium)
+                        .into(detailItemBinding.ivMovieItemPoster);
                 final String dir = DirectorsFormatUtil.format(subjects2.directors);
                 detailItemBinding.tvMovieItemDir.setText(dir);
                 final String cast = CastsFormatUtil.format(subjects2.casts);
@@ -96,8 +109,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return subjectsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
+     class ViewHolder extends RecyclerView.ViewHolder {
+         ViewHolder(View itemView) {
             super(itemView);
         }
     }

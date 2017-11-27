@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.spring_ballet.keep.CommonUtils.ApiList;
+import com.spring_ballet.keep.CommonUtils.IntentUtil;
 import com.spring_ballet.keep.CommonUtils.MovieListType;
 import com.spring_ballet.keep.CommonUtils.MovieUtils.AkaFormatUtil;
 import com.spring_ballet.keep.CommonUtils.MovieUtils.CountryFormatUtil;
@@ -74,6 +77,24 @@ public class MovieDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.movie_detail_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_more:
+                IntentUtil.startIntent(MovieDetailActivity.this, MovieMobileActivity.class,
+                        binding.getMovie().alt, binding.getMovie().title);
+                break;
+            default:
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
