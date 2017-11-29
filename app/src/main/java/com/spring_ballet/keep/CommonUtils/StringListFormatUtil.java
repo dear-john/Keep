@@ -1,9 +1,9 @@
-package com.spring_ballet.keep.CommonUtils.MovieUtils;
+package com.spring_ballet.keep.CommonUtils;
 
 
 import java.util.List;
 
-public class CountryFormatUtil {
+public class StringListFormatUtil {
     public static String format(List<String> strings) {
         StringBuilder builder = new StringBuilder();
         boolean isFirst = true;

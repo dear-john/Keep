@@ -7,12 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.spring_ballet.keep.Adapter.MyRecyclerViewAdapter;
+import com.spring_ballet.keep.bean.Book;
 import com.spring_ballet.keep.bean.Movie;
 import com.spring_ballet.keep.bean.MovieBean.Subjects;
 
 import java.util.List;
 
-public class LoadDataUtil {
+public class BookLoadDataUtil {
     public static void loadData(final String url, final int type, final RecyclerView recyclerView, final Context context) {
         MyAsyncTask myAsyncTask = new MyAsyncTask(type);
         myAsyncTask.execute(url);
@@ -23,20 +24,20 @@ public class LoadDataUtil {
                     LinearLayoutManager manager = new LinearLayoutManager(context,
                             LinearLayoutManager.HORIZONTAL, false);
                     switch (type) {
-                        case MovieListType.HOTMOVIE:
-                        case MovieListType.COMINGSOON:
-                        case MovieListType.USBOX:
+                        case DiffTypeNumber.HOTMOVIE:
+                        case DiffTypeNumber.COMINGSOON:
+                        case DiffTypeNumber.USBOX:
                             recyclerView.setLayoutManager(manager);
                             recyclerView.setAdapter(new MyRecyclerViewAdapter(context, subjects, CommonField.MOVIE_GENERAL_ITEM));
                             break;
-                        case MovieListType.TOPMOVIE:
+                        case DiffTypeNumber.TOPMOVIE:
                             GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3);
                             recyclerView.setLayoutManager(gridLayoutManager);
                             recyclerView.setAdapter(new MyRecyclerViewAdapter(context, subjects, CommonField.MOVIE_GENERAL_ITEM));
                             break;
-                        case MovieListType.KOUBEI:
+                        case DiffTypeNumber.KOUBEI:
                             break;
-                        case MovieListType.NEWMOVIE:
+                        case DiffTypeNumber.NEWMOVIE:
                             break;
                         default:
                     }
@@ -45,6 +46,11 @@ public class LoadDataUtil {
 
             @Override
             public void onMovieDataReceivedSuccess(Movie movie) {
+
+            }
+
+            @Override
+            public void onBookDataReceivedSuccess(Book book) {
 
             }
 

@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.spring_ballet.keep.bean.Book;
 import com.spring_ballet.keep.bean.Movie;
 import com.spring_ballet.keep.bean.MovieBean.InTheaters;
 import com.spring_ballet.keep.bean.MovieBean.Subjects;
@@ -34,25 +35,29 @@ public class MyAsyncTask extends AsyncTask<String, Void, String> {
             Gson gson = new Gson();
             List<Subjects> subjectsList = new ArrayList<>();
             switch (type) {
-                case MovieListType.HOTMOVIE:
-                case MovieListType.COMINGSOON:
-                case MovieListType.TOPMOVIE:
-                case MovieListType.SEARCHMOVIE:
+                case DiffTypeNumber.HOTMOVIE:
+                case DiffTypeNumber.COMINGSOON:
+                case DiffTypeNumber.TOPMOVIE:
+                case DiffTypeNumber.SEARCHMOVIE:
                     subjectsList = gson.fromJson(s, InTheaters.class).subjects;
                     asyncResponse.onSubjectsDataReceivedSuccess(subjectsList);
                     break;
-                case MovieListType.KOUBEI:
+                case DiffTypeNumber.KOUBEI:
                     break;
-                case MovieListType.USBOX:
+                case DiffTypeNumber.USBOX:
                     UsBox usBox = gson.fromJson(s, UsBox.class);
                     for (UsBox.Subject sub : usBox.subjects) {
                         subjectsList.add(sub.subject);
                     }
                     asyncResponse.onSubjectsDataReceivedSuccess(subjectsList);
                     break;
-                case MovieListType.NEWMOVIE:
+                case DiffTypeNumber.BOOKTAG:
+                    Book book = gson.fromJson(s, Book.class);
+                    asyncResponse.onBookDataReceivedSuccess(book);
                     break;
-                case MovieListType.MOVIEDETAIL:
+                case DiffTypeNumber.NEWMOVIE:
+                    break;
+                case DiffTypeNumber.MOVIEDETAIL:
                     Movie movie = gson.fromJson(s, Movie.class);
                     asyncResponse.onMovieDataReceivedSuccess(movie);
                     break;
@@ -68,9 +73,12 @@ public class MyAsyncTask extends AsyncTask<String, Void, String> {
     }
 
     public interface AsyncResponse {
+
         void onSubjectsDataReceivedSuccess(List<Subjects> subjects);
 
         void onMovieDataReceivedSuccess(Movie movie);
+
+        void onBookDataReceivedSuccess(Book book);
 
         void onDataReceivedFailed();
     }

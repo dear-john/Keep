@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -22,11 +21,12 @@ import android.webkit.WebViewClient;
 import com.spring_ballet.keep.CommonUtils.ToastUtil;
 import com.spring_ballet.keep.databinding.ActivityMovieMobileBinding;
 
-public class MovieMobileActivity extends AppCompatActivity {
+public class MobileActivity extends AppCompatActivity {
 
     private ActivityMovieMobileBinding binding;
     private String url;
     private String name;
+    private String typeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,19 @@ public class MovieMobileActivity extends AppCompatActivity {
                 finish();
             }
         });
-        url = getIntent().getStringExtra("data1");
-        name = getIntent().getStringExtra("data2");
-        binding.tvMovieMobileName.setText(String.format("%s - 电影 - 豆瓣 ", name));
+        Intent intent = getIntent();
+        String type = intent.getStringExtra("data1");
+        url = getIntent().getStringExtra("data2");
+        name = getIntent().getStringExtra("data3");
+        if (type.equals("MOVIE")) {
+            typeName = "电影";
+            binding.tvMovieMobileName.setText(String.format("%s - 电影 - 豆瓣 ", name));
+        } else if (type.equals("BOOK")) {
+            typeName = "图书";
+            binding.tvMovieMobileName.setText(String.format("%s - 图书 - 豆瓣 ", name));
+        }
         ObjectAnimator animator = ObjectAnimator.ofFloat(binding.tvMovieMobileName, "translationX", 500f, 0f);
-        animator.setDuration(3000);
+        animator.setDuration(5000);
         animator.start();
         binding.pbMovieMobile.setMax(100);
         binding.webViewMovieMobile.loadUrl(url);
@@ -68,7 +76,7 @@ public class MovieMobileActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.movie_mobile_menu, menu);
+        getMenuInflater().inflate(R.menu.mobile_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -78,7 +86,7 @@ public class MovieMobileActivity extends AppCompatActivity {
             case R.id.item_share:
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                String shareData = name + " - 电影 - 豆瓣 " + url + "（分享自" + getString(R.string.app_name) + "）";
+                String shareData = name + " - " + typeName + " - 豆瓣 " + url + "（分享自" + getString(R.string.app_name) + "）";
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareData);
                 shareIntent.setType("text/plain");
                 if (shareIntent.resolveActivity(getPackageManager()) != null) {
@@ -90,7 +98,7 @@ public class MovieMobileActivity extends AppCompatActivity {
                 ClipData clipData = ClipData.newPlainText("label", url);
                 if (clipboardManager != null) {
                     clipboardManager.setPrimaryClip(clipData);
-                    ToastUtil.showToast(MovieMobileActivity.this, "复制成功");
+                    ToastUtil.showToast(MobileActivity.this, "复制成功");
                 }
                 break;
             case R.id.item_open:

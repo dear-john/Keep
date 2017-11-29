@@ -14,8 +14,8 @@ import com.spring_ballet.keep.CommonUtils.CommonField;
 import com.spring_ballet.keep.CommonUtils.IntentUtil;
 import com.spring_ballet.keep.CommonUtils.MovieUtils.CastsFormatUtil;
 import com.spring_ballet.keep.CommonUtils.MovieUtils.DirectorsFormatUtil;
-import com.spring_ballet.keep.CommonUtils.MovieUtils.GenresFormatUtil;
-import com.spring_ballet.keep.MovieDetailActivity;
+import com.spring_ballet.keep.CommonUtils.StringListFormatUtil;
+import com.spring_ballet.keep.DetailActivity;
 import com.spring_ballet.keep.R;
 import com.spring_ballet.keep.bean.MovieBean.Subjects;
 import com.spring_ballet.keep.databinding.MovieDetailItemBinding;
@@ -66,12 +66,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                                 .error(R.drawable.load_err))
                         .load(subjects.images.medium)
                         .into(generalItemBinding.ivMovieImage);
-                String s = GenresFormatUtil.format(subjects.genres) + "(" + subjects.rating.average + "')";
+                String s = StringListFormatUtil.format(subjects.genres) + "(" + subjects.rating.average + "')";
                 generalItemBinding.tvMovieOtherInfo.setText(s);
                 generalItemBinding.layoutMovieItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        IntentUtil.startIntent(context, MovieDetailActivity.class, subjects);
+                        IntentUtil.startIntent(context, DetailActivity.class, "MOVIE",
+                                subjects.title, DirectorsFormatUtil.format(subjects.directors),
+                                CastsFormatUtil.format(subjects.casts), StringListFormatUtil.format(subjects.genres),
+                                String.valueOf(subjects.id), subjects.images.large);
                     }
                 });
                 generalItemBinding.executePendingBindings();
@@ -83,22 +86,23 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                         .setDefaultRequestOptions(new RequestOptions()
                                 .placeholder(R.drawable.load_err)
                                 .error(R.drawable.load_err)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
+                                .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
                         .load(subjects2.images.medium)
                         .into(detailItemBinding.ivMovieItemPoster);
                 final String dir = DirectorsFormatUtil.format(subjects2.directors);
                 detailItemBinding.tvMovieItemDir.setText(dir);
                 final String cast = CastsFormatUtil.format(subjects2.casts);
                 detailItemBinding.tvMovieItemCasts.setText(cast);
-                final String type = GenresFormatUtil.format(subjects2.genres);
+                final String type = StringListFormatUtil.format(subjects2.genres);
                 detailItemBinding.tvMovieItemType.setText(type);
-                detailItemBinding.executePendingBindings();
                 detailItemBinding.layoutMovieDetailItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        IntentUtil.startIntent(context, MovieDetailActivity.class, subjects2, dir, cast, type);
+                        IntentUtil.startIntent(context, DetailActivity.class, "MOVIE",
+                                subjects2.title, dir, cast, type, String.valueOf(subjects2.id), subjects2.images.large);
                     }
                 });
+                detailItemBinding.executePendingBindings();
                 break;
             default:
         }
@@ -109,8 +113,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return subjectsList.size();
     }
 
-     class ViewHolder extends RecyclerView.ViewHolder {
-         ViewHolder(View itemView) {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        ViewHolder(View itemView) {
             super(itemView);
         }
     }

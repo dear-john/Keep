@@ -11,9 +11,10 @@ import android.widget.TextView;
 
 import com.spring_ballet.keep.Adapter.MyFragmentPagerAdapter;
 import com.spring_ballet.keep.CommonUtils.ApiList;
-import com.spring_ballet.keep.CommonUtils.MovieListType;
+import com.spring_ballet.keep.CommonUtils.DiffTypeNumber;
 import com.spring_ballet.keep.CommonUtils.MyAsyncTask;
 import com.spring_ballet.keep.CommonUtils.ToastUtil;
+import com.spring_ballet.keep.bean.Book;
 import com.spring_ballet.keep.bean.Movie;
 import com.spring_ballet.keep.bean.MovieBean.Subjects;
 import com.spring_ballet.keep.databinding.ActivitySearchBinding;
@@ -45,15 +46,15 @@ public class SearchActivity extends AppCompatActivity {
         List<String> titleList = new ArrayList<>();
         titleList.add("书籍");
         titleList.add("电影");
-        binding.viewPagerSearch.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, titleList));
-        binding.viewPagerSearch.setOffscreenPageLimit(2);
-        binding.viewPagerSearch.setCurrentItem(0);
-        binding.tablayoutSearch.setupWithViewPager(binding.viewPagerSearch);
+        binding.layoutSearch.viewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, titleList));
+        binding.layoutSearch.viewPager.setOffscreenPageLimit(2);
+        binding.layoutSearch.viewPager.setCurrentItem(0);
+        binding.layoutSearch.tabLayout.setupWithViewPager(binding.layoutSearch.viewPager);
         binding.etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    MyAsyncTask myAsyncTask = new MyAsyncTask(MovieListType.SEARCHMOVIE);
+                    MyAsyncTask myAsyncTask = new MyAsyncTask(DiffTypeNumber.SEARCHMOVIE);
                     myAsyncTask.execute(ApiList.DouBanMovieSearchUrl + binding.etSearch.getText().toString());
                     myAsyncTask.setOnAsyncResponse(new MyAsyncTask.AsyncResponse() {
                         @Override
@@ -63,6 +64,11 @@ public class SearchActivity extends AppCompatActivity {
 
                         @Override
                         public void onMovieDataReceivedSuccess(Movie movie) {
+
+                        }
+
+                        @Override
+                        public void onBookDataReceivedSuccess(Book book) {
 
                         }
 

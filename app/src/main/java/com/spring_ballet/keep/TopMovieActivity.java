@@ -7,8 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.spring_ballet.keep.CommonUtils.ApiList;
-import com.spring_ballet.keep.CommonUtils.LoadDataUtil;
-import com.spring_ballet.keep.CommonUtils.MovieListType;
+import com.spring_ballet.keep.CommonUtils.MovieLoadDataUtil;
+import com.spring_ballet.keep.CommonUtils.DiffTypeNumber;
 import com.spring_ballet.keep.databinding.ActivityTopMovieBinding;
 
 public class TopMovieActivity extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class TopMovieActivity extends AppCompatActivity {
                 finish();
             }
         });
-        LoadDataUtil.loadData(ApiList.DouBanTop250, MovieListType.TOPMOVIE, binding.recyclerViewMovieTop, this);
+        MovieLoadDataUtil.loadData(ApiList.DouBanTop250, DiffTypeNumber.TOPMOVIE, binding.recyclerViewMovieTop, this);
     }
 
     @Override
