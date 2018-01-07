@@ -11,10 +11,10 @@ public class TagFormatUtil {
         boolean isFirst = true;
         for (Tag t : tags) {
             if (isFirst) {
-                builder.append(t.name);
+                builder.append(t.getName());
                 isFirst = false;
             } else {
-                builder.append("/").append(t.name);
+                builder.append("/").append(t.getName());
             }
         }
         return builder.toString();

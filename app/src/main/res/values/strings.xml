@@ -2,11 +2,22 @@
     <string name="app_name">Keep</string>
     <string name="hot_movie_list">热映榜</string>
     <string name="top_movie">豆瓣电影Top250</string>
-    <string name="see_more">浏览更多</string>
+    <string name="see_more">了解更多</string>
     <string name="movie_coming">即将上映</string>
     <string name="movie_usbox">北美票房榜</string>
-    <string name="movie_rating_left">(</string>
-    <string name="movie_rating_right">人评分)</string>
     <string name="search_hint">书籍、电影</string>
     <string name="search_count">&lt;前20条&gt;</string>
+    <string name="splash_jump">跳过</string>
+    <string name="gank">gank</string>
+    <string name="loading">正在加载…</string>
+    <string name="random_quote">从前现在过去了再不来~</string>
+    <string name="search_book">search book</string>
+    <string name="share_to">分享到</string>
+    <string name="copy_link">复制链接</string>
+    <string name="open_link">打开链接</string>
+    <string name="dir">导演:&#160;</string>
+    <string name="casts">主演:&#160;</string>
+    <string name="type">类型:&#160;</string>
+    <string name="pubdate">上映日期:&#160;</string>
+    <string name="rating">评分:&#160;</string>
 </resources>

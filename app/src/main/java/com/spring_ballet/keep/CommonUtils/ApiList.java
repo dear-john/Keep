@@ -8,11 +8,7 @@ public class ApiList {
     //movie
     public static final String DouBanTop250 = "http://api.douban.com/v2/movie/top250";
     public static final String MovieComingSoon = "http://api.douban.com/v2/movie/coming_soon";
-    //下面两个需要权限
-    public static final String KouBeiList = "http://api.douban.com/v2/movie/weekly";
-    public static final String NewMovieList = "http://api.douban.com/v2/movie/new_movies";
     public static final String HotMovieList = "https://api.douban.com/v2/movie/in_theaters";
-    public static final String DouBanApiList = "https://developers.douban.com/wiki/?title=movie_v2";
     public static final String UsBoxList = "https://api.douban.com/v2/movie/us_box";
     //后接电影id
     public static final String MovieItemInfo = "https://api.douban.com/v2/movie/subject/";

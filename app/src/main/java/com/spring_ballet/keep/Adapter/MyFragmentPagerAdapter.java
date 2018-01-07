@@ -4,22 +4,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-    private List<Fragment> fragmentList;
+    private final List<Fragment> fragmentList;
     private List<String> titleList;
-
-    public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
-        super(fm);
-        fragmentList = fragments;
-        titleList = titles;
-    }
 
     public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         fragmentList = fragments;
+        titleList = new ArrayList<>();
+    }
+
+    public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
+        this(fm,fragments);
+        titleList = titles;
     }
 
     @Override

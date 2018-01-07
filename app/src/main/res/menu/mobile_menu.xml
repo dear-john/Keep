@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item_share"
-        android:title="分享到"
+        android:title="@string/share_to"
         app:showAsAction="never" />
     <item
         android:id="@+id/item_copy"
-        android:title="复制链接"
+        android:title="@string/copy_link"
         app:showAsAction="never" />
     <item
         android:id="@+id/item_open"
-        android:title="打开链接"
+        android:title="@string/open_link"
         app:showAsAction="never" />
 
 </menu>

@@ -19,11 +19,12 @@
                 android:src="@drawable/loading_image" />
 
             <TextView
+                android:id="@+id/tv_loading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="正在加载..."
+                android:text="@string/loading"
                 android:textColor="@color/colorContent"
                 android:textSize="20sp" />
 
@@ -76,7 +77,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="9dp"
-                            android:text="从前现在过去了再不来~"
+                            android:text="@string/random_quote"
                             android:textSize="12sp" />
 
                     </LinearLayout>

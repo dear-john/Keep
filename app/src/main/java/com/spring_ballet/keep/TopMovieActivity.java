@@ -1,24 +1,21 @@
 package com.spring_ballet.keep;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.spring_ballet.keep.CommonUtils.ApiList;
-import com.spring_ballet.keep.CommonUtils.MovieLoadDataUtil;
 import com.spring_ballet.keep.CommonUtils.DiffTypeNumber;
+import com.spring_ballet.keep.CommonUtils.MovieLoadDataUtil;
+import com.spring_ballet.keep.base.BaseActivity;
 import com.spring_ballet.keep.databinding.ActivityTopMovieBinding;
 
-public class TopMovieActivity extends AppCompatActivity {
+public class TopMovieActivity extends BaseActivity<ActivityTopMovieBinding> {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityTopMovieBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_top_movie);
-        setSupportActionBar(binding.toolbarTopMovie);
         binding.ivTopMovieBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,11 +26,12 @@ public class TopMovieActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+    protected Toolbar getToolBar() {
+        return binding.toolbarTopMovie;
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_top_movie;
     }
 }

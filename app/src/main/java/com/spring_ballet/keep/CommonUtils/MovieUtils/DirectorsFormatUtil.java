@@ -11,10 +11,10 @@ public class DirectorsFormatUtil {
         boolean isFirst = true;
         for (Directors d : directors) {
             if (isFirst) {
-                builder.append(d.name);
+                builder.append(d.getName());
                 isFirst = false;
             } else {
-                builder.append("/").append(d.name);
+                builder.append("/").append(d.getName());
             }
         }
         return builder.toString();

@@ -1,9 +1,8 @@
 package com.spring_ballet.keep;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -14,8 +13,8 @@ import com.spring_ballet.keep.CommonUtils.ApiList;
 import com.spring_ballet.keep.CommonUtils.DiffTypeNumber;
 import com.spring_ballet.keep.CommonUtils.MyAsyncTask;
 import com.spring_ballet.keep.CommonUtils.ToastUtil;
-import com.spring_ballet.keep.bean.Book;
-import com.spring_ballet.keep.bean.Movie;
+import com.spring_ballet.keep.base.BaseActivity;
+import com.spring_ballet.keep.base.BaseClass;
 import com.spring_ballet.keep.bean.MovieBean.Subjects;
 import com.spring_ballet.keep.databinding.ActivitySearchBinding;
 import com.spring_ballet.keep.fragment.SearchFragment.SearchBookFragment;
@@ -24,16 +23,13 @@ import com.spring_ballet.keep.fragment.SearchFragment.SearchMovieFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
 
-    private ActivitySearchBinding binding;
     private List<Subjects> subjectsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
-        setSupportActionBar(binding.toolbarSearch);
         binding.ivSearchBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +59,7 @@ public class SearchActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onMovieDataReceivedSuccess(Movie movie) {
-
-                        }
-
-                        @Override
-                        public void onBookDataReceivedSuccess(Book book) {
+                        public void onOtherDataReceivedSuccess(BaseClass baseClass) {
 
                         }
 
@@ -82,6 +73,16 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected Toolbar getToolBar() {
+        return binding.toolbarSearch;
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_search;
     }
 
     public List<Subjects> getData() {

@@ -14,17 +14,16 @@ import com.spring_ballet.keep.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
 
-    boolean isInMain = false;
+    private boolean isInMain = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final ActivitySplashBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         binding.ivDeflault.setImageResource(R.drawable.splash_default);
-        Glide.with(SplashActivity.this)
+        Glide.with(this)
                 .setDefaultRequestOptions(new RequestOptions()
-                        .error(R.drawable.splash_default)
-                        .placeholder(R.drawable.splash_default))
+                        .error(R.drawable.splash_default))
                 .load(ApiList.BingDayPic)
                 .into(binding.ivSplash);
         new Handler().postDelayed(new Runnable() {

@@ -57,7 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="导演: "
+                        android:text="@string/dir"
                         android:textColor="@color/colorContent" />
 
                     <TextView
@@ -79,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="主演: "
+                        android:text="@string/casts"
                         android:textColor="@color/colorContent" />
 
                     <TextView
@@ -101,7 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="类型: "
+                        android:text="@string/type"
                         android:textColor="@color/colorContent" />
 
                     <TextView
@@ -123,7 +123,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="上映日期: "
+                        android:text="@string/pubdate"
                         android:textColor="@color/colorContent" />
 
                     <TextView
@@ -143,7 +143,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="评分: "
+                        android:text="@string/rating"
                         android:textColor="@color/colorContent" />
 
                     <TextView

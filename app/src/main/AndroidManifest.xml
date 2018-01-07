@@ -24,7 +24,7 @@
         <activity android:name=".TopMovieActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".MobileActivity" />
-        <activity android:name=".DetailActivity"/>
+        <activity android:name=".DetailActivity" />
     </application>
 
 </manifest>

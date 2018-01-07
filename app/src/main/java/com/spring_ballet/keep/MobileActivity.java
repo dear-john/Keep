@@ -5,11 +5,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +17,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.spring_ballet.keep.CommonUtils.ToastUtil;
-import com.spring_ballet.keep.databinding.ActivityMovieMobileBinding;
+import com.spring_ballet.keep.base.BaseActivity;
+import com.spring_ballet.keep.databinding.ActivityMobileBinding;
 
-public class MobileActivity extends AppCompatActivity {
+public class MobileActivity extends BaseActivity<ActivityMobileBinding> {
 
-    private ActivityMovieMobileBinding binding;
     private String url;
     private String name;
     private String typeName;
@@ -31,12 +29,6 @@ public class MobileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_mobile);
-        setSupportActionBar(binding.toolbarMovieMobile);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
         binding.ivMovieMobileBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +64,16 @@ public class MobileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected Toolbar getToolBar() {
+        return binding.toolbarMovieMobile;
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_mobile;
     }
 
     @Override

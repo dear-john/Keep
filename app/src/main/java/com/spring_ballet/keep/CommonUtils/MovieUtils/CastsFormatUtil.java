@@ -11,10 +11,10 @@ public class CastsFormatUtil {
         boolean isFirst = true;
         for (Casts c : casts) {
             if (isFirst) {
-                builder.append(c.name);
+                builder.append(c.getName());
                 isFirst = false;
             } else {
-                builder.append("/").append(c.name);
+                builder.append("/").append(c.getName());
             }
         }
         return builder.toString();
